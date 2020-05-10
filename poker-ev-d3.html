@@ -3,6 +3,7 @@
     <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
 	<script src="data.js"></script>
 
+
 <script>
 
 //156 keys per object
@@ -10,7 +11,7 @@ var position = "SB";
 
 //First, sets the screen width and height of the svg container
 var screenWidth = window.innerWidth - 15;
-var screenHeight = window.innerHeight - 20;
+var screenHeight = window.innerHeight - 50;
 
 //Create the svg container
 var svgContainer = d3.select("body").append("svg").attrs({width: screenWidth, height: screenHeight});
@@ -21,30 +22,45 @@ for(var x = 0; x <= screenWidth; x += screenWidth/13){
 	for(var y = 0; y <= screenHeight; y+= screenHeight/12){
 		currentIteration++;
 		//Append the rectangle to the svg container
-		svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/12}).on("mouseover", 
+		svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/12, pos: Object.keys(HEV[position])[currentIteration]}).on("mouseover", 
 		function(d) {
 			d3.select(this).attr("r", 10).style("fill", "red");	
-			//d3.select("#iKK").text(HEV[position][Object.keys(HEV[position])[currentIteration]]);
-			d3.select("#iKK").text("test")
-		}).on("mouseout", 
+			//alert(d3.select(this).attr("pos"));
+			changeText(d3.select(this).attr("pos"));
+
+		}).on("mouseout",
 		function(d) { 
 			d3.select(this).attr("r", 5.5).style("fill", "#000000");
-			d3.select("#iKK").text("KK")
+			changeTextBack(d3.select(this).attr("pos"));
 		});
-			 var pos = 'i' + Object.keys(HEV[position])[currentIteration];
-			 pos = pos.replace(/ /g,'');
+			 var id = 'i' + Object.keys(HEV[position])[currentIteration];
+			 id = id.replace(/ /g,'');
 		//Append some text to the bottom left corner of the calculator. The font size changes depending on the screen size
-		svgContainer.append("text").attrs({x: x + screenWidth/26, y: y + screenHeight/24, fill: "white", "font-size": (screenWidth + screenHeight)/100, "text-anchor": "middle", "dominant-baseline": "middle", "id": pos }).text(Object.keys(HEV[position])[currentIteration]);
+		svgContainer.append("text").attrs({x: x + screenWidth/26, y: y + screenHeight/24, fill: "white", "font-size": (screenWidth + screenHeight)/100, "text-anchor": "middle", "dominant-baseline": "middle", "id": id }).text(Object.keys(HEV[position])[currentIteration]);
 
 	}
 }
   
-function changeText(){
-	//d3.select("#iKK").text(HEV["SB"]["KK"]);
-	requestAnimationFrame(changeText);
+function changeText(hand){
+	var id = "#i"+hand.replace(/ /g,'');
+	d3.select(id).text(HEV["SB"][hand]);
 }
 
+function changeTextBack(hand){
+	var id = "#i"+hand.replace(/ /g,'');
+	d3.select(id).text(hand);
+}
 
-changeText();
+d3.select("body").append("input").attrs({
+	"type": "range",
+	"id": "slider",
+	"min": "1",
+	"max": "9"
+	
+});
+
+var slider = document.getElementById("slider");
+slider.style.width = "100%"
+
 
 </script>

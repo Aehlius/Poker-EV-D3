@@ -1,30 +1,32 @@
 <body>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+   	<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
 	<script src="data.js"></script>
 
 
 <script>
 
-//156 keys per object
+//169 keys per object
 var position = "SB";
 
+var list = ["AA", "AK s", "AQ s", "AJ s", "AT s", "A9 s", "A8 s", "A7 s", "A6 s", "A5 s", "A4 s", "A3 s", "A2 s", "AK o", "KK", "KQ s", "KJ s", "KT s", "K9 s", "K8 s", "K7 s", "K6 s", "K5 s", "K4 s", "K3 s", "K2 s", "AQ o", "KQ o", "QQ", "QJ s", "QT s", "Q9 s", "Q8 s", "Q7 s", "Q6 s", "Q5 s", "Q4 s", "Q3 s", "Q2 s", "AJ o", "KJ o", "QJ o", "JJ", "JT s"];
+alert(list)
+
 //First, sets the screen width and height of the svg container
-var screenWidth = window.innerWidth - 15;
-var screenHeight = window.innerHeight - 100;
+var screenWidth = window.innerWidth - 75;
+var screenHeight = window.innerHeight - 75;
 
 //Create the svg container
 var svgContainer = d3.select("body").append("svg").attrs({width: screenWidth, height: screenHeight});
-
-//Fills the screen with 13 x 13 rectangles
+//Fills the screen with 13 x 13. rectangles
 var currentIteration = -1;
 for(var x = 0; x <= screenWidth; x += screenWidth/13){
-	for(var y = 0; y <= screenHeight; y+= screenHeight/12){
+	for(var y = 0; y <= screenHeight; y+= screenHeight/13){
 		currentIteration++;
 		//Append the rectangle to the svg container
 		if(Object.keys(HEV[position])[currentIteration] !== undefined && Object.keys(HEV[position])[currentIteration].charAt(0) == Object.keys(HEV[position])[currentIteration].charAt(1)){
 		
-			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/12, "fill": "white",pos: Object.keys(HEV[position])[currentIteration]}).on("mouseover", 
+			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/13, "fill": "white",pos: Object.keys(HEV[position])[currentIteration]}).on("mouseover", 
 			function(d) {
 				d3.select(this).attr("r", 10).style("fill", "red");	
 				//alert(d3.select(this).attr("pos"));
@@ -38,7 +40,7 @@ for(var x = 0; x <= screenWidth; x += screenWidth/13){
 		
 		} else if(Object.keys(HEV[position])[currentIteration] !== undefined && Object.keys(HEV[position])[currentIteration].charAt(3) == "s"){
 		
-			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/12, "fill": "green",pos: Object.keys(HEV[position])[currentIteration]}).on("mouseover", 
+			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/13, "fill": "green",pos: Object.keys(HEV[position])[currentIteration]}).on("mouseover", 
 			function(d) {
 				d3.select(this).attr("r", 10).style("fill", "red");	
 				//alert(d3.select(this).attr("pos"));
@@ -53,7 +55,7 @@ for(var x = 0; x <= screenWidth; x += screenWidth/13){
 		
 		}else {
 		
-			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/12, "fill": "skyblue", pos: Object.keys(HEV[position])[currentIteration]}).on("mouseover", 
+			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/13, "fill": "skyblue", pos: Object.keys(HEV[position])[currentIteration]}).on("mouseover", 
 			function(d) {
 				d3.select(this).attr("r", 10).style("fill", "red");	
 				//alert(d3.select(this).attr("pos"));

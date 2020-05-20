@@ -25,7 +25,11 @@ for(var x = 0; x <= screenWidth; x += screenWidth/13){
 		
 			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/13, "fill": "white",pos: list[currentIteration]}).on("mouseover", 
 			function(d) {
-				d3.select(this).attr("r", 10).style("fill", "red");	
+				if(HEV[position][d3.select(this).attr("pos")] <= 0){
+					d3.select(this).attr("r", 10).style("fill", "red");	
+				} else {
+					d3.select(this).attr("r", 10).style("fill", "green");
+				}
 				//alert(d3.select(this).attr("pos"));
 				changeText(d3.select(this).attr("pos"));
 
@@ -37,15 +41,19 @@ for(var x = 0; x <= screenWidth; x += screenWidth/13){
 		
 		} else if(list[currentIteration] !== undefined && list[currentIteration].charAt(3) == "s"){
 		
-			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/13, "fill": "green",pos: list[currentIteration]}).on("mouseover", 
+			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/13, "fill": "#fdfd96",pos: list[currentIteration]}).on("mouseover", 
 			function(d) {
-				d3.select(this).attr("r", 10).style("fill", "red");	
+				if(HEV[position][d3.select(this).attr("pos")] <= 0){
+					d3.select(this).attr("r", 10).style("fill", "red");	
+				} else {
+					d3.select(this).attr("r", 10).style("fill", "green");
+				}
 				//alert(d3.select(this).attr("pos"));
 				changeText(d3.select(this).attr("pos"));
 
 			}).on("mouseout",
 			function(d) { 
-				d3.select(this).attr("r", 5.5).style("fill", "green");
+				d3.select(this).attr("r", 5.5).style("fill", "#fdfd96");
 				changeTextBack(d3.select(this).attr("pos"));
 			});
 		
@@ -54,7 +62,11 @@ for(var x = 0; x <= screenWidth; x += screenWidth/13){
 		
 			svgContainer.append("rect").attrs({x: x, y: y, width: screenWidth/13, height: screenHeight/13, "fill": "skyblue", pos: list[currentIteration]}).on("mouseover", 
 			function(d) {
-				d3.select(this).attr("r", 10).style("fill", "red");	
+				if(HEV[position][d3.select(this).attr("pos")] <= 0){
+					d3.select(this).attr("r", 10).style("fill", "red");	
+				} else {
+					d3.select(this).attr("r", 10).style("fill", "green");
+				}
 				//alert(d3.select(this).attr("pos"));
 				changeText(d3.select(this).attr("pos"));
 

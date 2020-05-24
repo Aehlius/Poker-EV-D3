@@ -12,11 +12,12 @@ A modern browser - like the one you're using to look at this repo
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+This project is deployed live at the following [link](https://aehlius.github.io/Poker-EV-D3)
 
 ## Built With
 
 * [D3.js](https://d3js.org/) - The data visualization tool
+* [Github Pages](https://pages.github.com/) - The live deployment tool
 
 ## Author
 

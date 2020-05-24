@@ -4,7 +4,9 @@ Poker EV visualizer allows the user to easily find the expected value a specific
 
 ## Getting Started
 
-Download the repo, which contains the html file and the json of the EVs. Execute the html file in a browser of your choice
+Download the repo, which contains the html file and the json of the EVs. Execute the html file in a browser of your choice. 
+
+Hands highlighted in yellow are suited, while hands in blue are off-suit. Hands unhighlighted are pairs - which cannot be suited.Hover over a card combination to reveal its expected value in big blinds - green represents a profitable hand, red represents an unprofitable one. Use the slider at the bottom of the page to adjust the position of the hand - this affects the hand's profitability.
 
 ### Prerequisites
 
